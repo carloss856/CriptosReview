@@ -24,11 +24,11 @@ precio suba o baje, detectando el cambio mediante el ciclo de vida de Angular.
     - Optimización de Renderizado: Uso obligatorio de trackBy (en la nueva sintaxis @for (item of items;
 track item.id)) y ChangeDetectionStrategy.OnPush.
 3. Arquitectura Sugerida:
-  - Core Service (Data Provider): Un servicio que gestione un WebSocket o un interval de RxJS de alta
+      - Core Service (Data Provider): Un servicio que gestione un WebSocket o un interval de RxJS de alta
 frecuencia.
-  - Smart Components (Containers): Encargados de la lógica de filtrado y comunicación con el Web
+      - Smart Components (Containers): Encargados de la lógica de filtrado y comunicación con el Web
 Worker.
-  - Presentational Components (Dumb): Reciben datos por @Input y no tienen lógica de negocio.
+      - Presentational Components (Dumb): Reciben datos por @Input y no tienen lógica de negocio.
 Entrega del ejercicio: En GitHub hagan un "Pull Request" de su rama de desarrollo a la principal.
 Recuerden enviar el escrito en formato PDF del paso a paso de como hicieron su ejercicio.
 
