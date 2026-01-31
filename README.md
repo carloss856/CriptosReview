@@ -5,7 +5,7 @@
 
 # Monitoreo CriptoActivo
 
-# Ejercicio 2
+## Ejercicio 2
 ### Ejercicio 2: "Plataforma de Monitoreo de Criptoactivos en Tiempo Real."
 El objetivo es construir una aplicación que procese un feed de precios (simulado) y realice cálculos
 estadísticos complejos en el cliente sin bloquear el hilo principal.
