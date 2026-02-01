@@ -5,7 +5,10 @@
 .asset-card {
   border: 1px solid #e2e6ef;
   border-radius: 12px;
-  padding: 1rem 1.25rem;
+  padding-inline: 1.25rem;
+  padding-block: 1.25rem;
+  box-sizing: border-box;
+  overflow: hidden;
   background: #ffffff;
   display: grid;
   gap: 0.75rem;
@@ -19,8 +22,18 @@
   background: #fff7ed;
 }
 
+.asset-header,
+.asset-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
 .asset-header {
-  display: grid;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.25rem;
 }
 
@@ -36,10 +49,7 @@
 }
 
 .asset-body {
-  display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
 }
 
 .price {
@@ -64,6 +74,8 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: #6b7280;
+  flex-shrink: 0;
+  max-width: 100%;
 }
 
 .change.is-positive {
@@ -97,6 +109,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  margin-top: 0.75rem;
+  min-width: 0;
 }
 
 .threshold label {
@@ -104,6 +118,8 @@
   gap: 0.35rem;
   font-size: 0.85rem;
   color: #6b7280;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .threshold input {
@@ -112,6 +128,9 @@
   padding: 0.35rem 0.5rem;
   font-size: 0.9rem;
   min-width: 120px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .threshold .clear {
@@ -121,6 +140,8 @@
   padding: 0.35rem 0.85rem;
   font-size: 0.8rem;
   cursor: pointer;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .threshold .clear:disabled {

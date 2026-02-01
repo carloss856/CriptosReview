@@ -24,10 +24,14 @@
       <input
         #thresholdInput
         type="number"
+        lang="en"
         inputmode="decimal"
-        step="any"
-        [value]="asset.threshold ?? ''"
+        [step]="thresholdStep"
+        placeholder="Ej: 0.55"
+        [value]="thresholdDisplayValue"
         (input)="onThresholdInput(thresholdInput.value)"
+        (blur)="onThresholdCommit(thresholdInput.value)"
+        (keydown.enter)="onThresholdCommit(thresholdInput.value)"
       />
     </label>
     <button

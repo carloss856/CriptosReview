@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 
 import { CryptoAsset } from '../../models/crypto-asset.model';
-import { PriceFlashDirective } from '../../../shared/directives/price-flash.directive';
+import { PriceFlashDirective } from '../../../../shared/directives/price-flash.directive';
 
 type CryptoAssetViewModel = CryptoAsset & {
   movingAverage?: number;
@@ -21,6 +21,7 @@ export class CryptoAssetCardComponent {
   @Input({ required: true }) asset!: CryptoAssetViewModel;
   @Output() thresholdChange = new EventEmitter<{ assetId: string; value: number | null }>();
   @Output() thresholdClear = new EventEmitter<string>();
+  thresholdDraft: string | null = null;
 
   get priceDigits(): string {
     return this.asset.symbol === 'ADA' || this.asset.symbol === 'XRP' ? '1.4-4' : '1.2-2';
@@ -56,15 +57,30 @@ export class CryptoAssetCardComponent {
     return this.asset.volatility === undefined ? '—' : this.asset.volatility.toFixed(4);
   }
 
+  get thresholdStep(): string {
+    return this.asset.symbol === 'ADA' || this.asset.symbol === 'XRP' ? '0.0001' : '0.01';
+  }
+
+  get thresholdDisplayValue(): string | number {
+    return this.thresholdDraft ?? (this.asset.threshold ?? '');
+  }
+
   onThresholdInput(rawValue: string): void {
+    this.thresholdDraft = rawValue;
+  }
+
+  onThresholdCommit(rawValue: string): void {
     const trimmed = rawValue.trim();
+    this.thresholdDraft = null;
+
     if (trimmed === '') {
       this.thresholdChange.emit({ assetId: this.asset.id, value: null });
       return;
     }
 
-    const parsed = Number(trimmed);
-    if (Number.isNaN(parsed)) {
+    const normalized = trimmed.replace(',', '.');
+    const parsed = Number(normalized);
+    if (!Number.isFinite(parsed)) {
       return;
     }
 
@@ -72,6 +88,7 @@ export class CryptoAssetCardComponent {
   }
 
   onClearThreshold(): void {
+    this.thresholdDraft = null;
     this.thresholdClear.emit(this.asset.id);
   }
 }

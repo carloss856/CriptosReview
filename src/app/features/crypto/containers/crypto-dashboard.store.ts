@@ -89,7 +89,7 @@ export class CryptoDashboardStore {
   setThreshold(assetId: string, value: number | null): void {
     this.thresholdsSignal.update((current) => {
       const next = { ...current };
-      if (value === null || value <= 0) {
+      if (value === null || !Number.isFinite(value)) {
         delete next[assetId];
       } else {
         next[assetId] = value;
@@ -126,7 +126,7 @@ export class CryptoDashboardStore {
   private saveThresholds(thresholds: Record<string, number>): void {
     try {
       const cleaned = Object.fromEntries(
-        Object.entries(thresholds).filter(([, value]) => Number.isFinite(value) && value > 0)
+        Object.entries(thresholds).filter(([, value]) => Number.isFinite(value))
       ) as Record<string, number>;
       localStorage.setItem(this.storageKey, JSON.stringify(cleaned));
     } catch {

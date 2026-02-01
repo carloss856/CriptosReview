@@ -40,3 +40,12 @@
 5.1 Se creo la directiva appPriceFlash con comparacion prev/actual y limpieza de timeouts.
 5.2 Se integro la directiva en el precio de la card.
 5.3 Se agregaron estilos flash-up/flash-down para el indicador visual.
+
+## Objetivo 6 – Ajuste de input de umbral
+6.1 Se ajusto el input de umbral para confirmar en change/blur y evitar reseteos con precios decimales.
+6.2 Se normalizo la entrada de umbral para aceptar decimales con coma y se valido el alert solo con umbrales > 0.
+6.3 Se ajusto setThreshold para aceptar negativos en memoria y habilitar limpieza, sin persistir valores invalidos.
+6.4 Se cambio el input de umbral a texto con normalizacion de separador decimal y validacion (> 0) para evitar reseteos por locale.
+6.5 Fix: umbrales permiten negativos/0 para habilitar limpiar, alerta solo >0, step decimal por simbolo y padding simetrico.
+6.6 Se corrigio el padding y layout interno de las tarjetas para evitar que porcentaje y boton Limpiar queden fuera del borde.
+6.7 Se agrego un buffer local para el input de umbral y se confirmo en blur/enter para permitir escribir decimales como 0. sin que se borren.
