@@ -27,3 +27,11 @@
 3.4 Se agrego estilo visual para resaltar tarjetas en alerta.
 3.5 Se limpio la persistencia de umbrales eliminando claves vacias y valores invalidos.
 3.6 Se agrego step any en el input y se aplico estilo de alerta al porcentaje.
+
+## Objetivo 4 – Metricas con Web Worker
+4.1 Se creo el worker de metricas con protocolo CALC/RESULT y calculos de MA/volatilidad.
+4.2 Se agrego un servicio wrapper para postMessage y stream de resultados.
+4.3 Se integro historial de precios, metrics signals y computed en el store.
+4.4 Se mostro MA(50) y volatilidad en las tarjetas de criptoactivos.
+4.5 Se endurecio el servicio del worker para degradar a fallback al fallar.
+4.6 Se tiparon metrics con interfaz y view-model en el store, limpiando umbrales persistidos.

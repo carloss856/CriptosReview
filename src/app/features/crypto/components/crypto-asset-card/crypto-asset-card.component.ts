@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { CryptoAsset } from '../../models/crypto-asset.model';
 
+type CryptoAssetViewModel = CryptoAsset & {
+  movingAverage?: number;
+  volatility?: number;
+};
+
 @Component({
   selector: 'app-crypto-asset-card',
   standalone: true,
@@ -12,7 +17,7 @@ import { CryptoAsset } from '../../models/crypto-asset.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CryptoAssetCardComponent {
-  @Input({ required: true }) asset!: CryptoAsset;
+  @Input({ required: true }) asset!: CryptoAssetViewModel;
   @Output() thresholdChange = new EventEmitter<{ assetId: string; value: number | null }>();
   @Output() thresholdClear = new EventEmitter<string>();
 
@@ -40,6 +45,14 @@ export class CryptoAssetCardComponent {
 
   get isAlert(): boolean {
     return this.asset.threshold !== undefined && this.asset.price >= this.asset.threshold;
+  }
+
+  get movingAverageLabel(): string {
+    return this.asset.movingAverage === undefined ? '—' : this.asset.movingAverage.toFixed(2);
+  }
+
+  get volatilityLabel(): string {
+    return this.asset.volatility === undefined ? '—' : this.asset.volatility.toFixed(4);
   }
 
   onThresholdInput(rawValue: string): void {
