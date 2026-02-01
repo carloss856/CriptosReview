@@ -5,7 +5,9 @@
   </header>
 
   <div class="asset-body">
-    <div class="price">{{ asset.price | number: priceDigits }}</div>
+    <div class="price" [appPriceFlash]="asset.price">
+      {{ asset.price | number: priceDigits }}
+    </div>
     <div class="change" [ngClass]="[changeClass, isAlert ? 'is-alert' : '']">
       {{ changeLabel }}
     </div>

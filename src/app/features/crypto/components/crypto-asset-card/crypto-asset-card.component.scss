@@ -45,6 +45,19 @@
 .price {
   font-size: 1.4rem;
   font-weight: 600;
+  border-radius: 8px;
+  padding: 0.1rem 0.35rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.price.flash-up {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.price.flash-down {
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 .change {

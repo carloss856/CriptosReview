@@ -35,3 +35,8 @@
 4.4 Se mostro MA(50) y volatilidad en las tarjetas de criptoactivos.
 4.5 Se endurecio el servicio del worker para degradar a fallback al fallar.
 4.6 Se tiparon metrics con interfaz y view-model en el store, limpiando umbrales persistidos.
+
+## Objetivo 5 – Flash por cambio de precio
+5.1 Se creo la directiva appPriceFlash con comparacion prev/actual y limpieza de timeouts.
+5.2 Se integro la directiva en el precio de la card.
+5.3 Se agregaron estilos flash-up/flash-down para el indicador visual.

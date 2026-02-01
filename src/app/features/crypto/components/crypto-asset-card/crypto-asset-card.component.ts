@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 
 import { CryptoAsset } from '../../models/crypto-asset.model';
+import { PriceFlashDirective } from '../../../shared/directives/price-flash.directive';
 
 type CryptoAssetViewModel = CryptoAsset & {
   movingAverage?: number;
@@ -11,7 +12,7 @@ type CryptoAssetViewModel = CryptoAsset & {
 @Component({
   selector: 'app-crypto-asset-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PriceFlashDirective],
   templateUrl: './crypto-asset-card.component.html',
   styleUrls: ['./crypto-asset-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
