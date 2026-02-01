@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CryptoAsset } from '../../models/crypto-asset.model';
@@ -13,6 +13,8 @@ import { CryptoAsset } from '../../models/crypto-asset.model';
 })
 export class CryptoAssetCardComponent {
   @Input({ required: true }) asset!: CryptoAsset;
+  @Output() thresholdChange = new EventEmitter<{ assetId: string; value: number | null }>();
+  @Output() thresholdClear = new EventEmitter<string>();
 
   get priceDigits(): string {
     return this.asset.symbol === 'ADA' || this.asset.symbol === 'XRP' ? '1.4-4' : '1.2-2';
@@ -34,5 +36,28 @@ export class CryptoAssetCardComponent {
     const sign =
       this.asset.changePercent > 0 ? '+' : this.asset.changePercent < 0 ? '-' : '';
     return `${sign}${Math.abs(this.asset.changePercent).toFixed(2)}%`;
+  }
+
+  get isAlert(): boolean {
+    return this.asset.threshold !== undefined && this.asset.price >= this.asset.threshold;
+  }
+
+  onThresholdInput(rawValue: string): void {
+    const trimmed = rawValue.trim();
+    if (trimmed === '') {
+      this.thresholdChange.emit({ assetId: this.asset.id, value: null });
+      return;
+    }
+
+    const parsed = Number(trimmed);
+    if (Number.isNaN(parsed)) {
+      return;
+    }
+
+    this.thresholdChange.emit({ assetId: this.asset.id, value: parsed });
+  }
+
+  onClearThreshold(): void {
+    this.thresholdClear.emit(this.asset.id);
   }
 }

@@ -10,6 +10,13 @@
   display: grid;
   gap: 0.75rem;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.asset-card.is-alert {
+  border-color: #f97316;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+  background: #fff7ed;
 }
 
 .asset-header {
@@ -58,4 +65,40 @@
   border: 1px solid #ef4444;
   border-radius: 999px;
   padding: 0.1rem 0.5rem;
+}
+
+.threshold {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.threshold label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.threshold input {
+  border: 1px solid #d5d9e2;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+.threshold .clear {
+  border: 1px solid #d5d9e2;
+  background: #f8fafc;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.threshold .clear:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

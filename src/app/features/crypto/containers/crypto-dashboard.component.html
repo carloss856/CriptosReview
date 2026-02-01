@@ -6,7 +6,11 @@
 
   <div class="assets-grid">
     @for (asset of assets(); track asset.id) {
-      <app-crypto-asset-card [asset]="asset" />
+      <app-crypto-asset-card
+        [asset]="asset"
+        (thresholdChange)="onThresholdChange($event)"
+        (thresholdClear)="onThresholdClear($event)"
+      />
     }
   </div>
 </section>

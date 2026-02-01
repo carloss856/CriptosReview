@@ -18,4 +18,12 @@ export class CryptoDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.store.init();
   }
+
+  onThresholdChange(payload: { assetId: string; value: number | null }): void {
+    this.store.setThreshold(payload.assetId, payload.value);
+  }
+
+  onThresholdClear(assetId: string): void {
+    this.store.clearThreshold(assetId);
+  }
 }

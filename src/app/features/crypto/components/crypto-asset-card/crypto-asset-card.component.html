@@ -1,4 +1,4 @@
-﻿<article class="asset-card">
+﻿<article class="asset-card" [class.is-alert]="isAlert">
   <header class="asset-header">
     <div class="symbol">{{ asset.symbol }}</div>
     <div class="name">{{ asset.name }}</div>
@@ -6,6 +6,30 @@
 
   <div class="asset-body">
     <div class="price">{{ asset.price | number: priceDigits }}</div>
-    <div class="change" [ngClass]="changeClass">{{ changeLabel }}</div>
+    <div class="change" [ngClass]="[changeClass, isAlert ? 'is-alert' : '']">
+      {{ changeLabel }}
+    </div>
+  </div>
+
+  <div class="threshold">
+    <label>
+      <span>Umbral</span>
+      <input
+        #thresholdInput
+        type="number"
+        inputmode="decimal"
+        step="any"
+        [value]="asset.threshold ?? ''"
+        (input)="onThresholdInput(thresholdInput.value)"
+      />
+    </label>
+    <button
+      type="button"
+      class="clear"
+      (click)="onClearThreshold()"
+      [disabled]="asset.threshold === undefined"
+    >
+      Limpiar
+    </button>
   </div>
 </article>

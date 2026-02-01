@@ -17,8 +17,13 @@
 2.1 Se creo el componente presentacional de tarjetas para criptoactivos con estilos base.
 2.2 Se refactorizo el dashboard para usar cards y mantener OnPush con @for.
 2.3 Se agrego un layout simple con header y grid responsive para el listado.
-
 2.4 Se ajusto el formato de precio y porcentaje en las tarjetas para mantener decimales y signo.
-
-
 2.5 Se corrigio la metadata de estilos en los componentes (styleUrls).
+
+## Objetivo 3 – Alertas dinamicas por umbral
+3.1 Se agrego estado de umbrales en el store con persistencia en localStorage.
+3.2 Se creo el input presentacional de umbral con outputs para cambiar y limpiar.
+3.3 Se conectaron eventos del card al store desde el container.
+3.4 Se agrego estilo visual para resaltar tarjetas en alerta.
+3.5 Se limpio la persistencia de umbrales eliminando claves vacias y valores invalidos.
+3.6 Se agrego step any en el input y se aplico estilo de alerta al porcentaje.
