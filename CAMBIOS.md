@@ -12,3 +12,13 @@
 1.6 Se agrego redondeo por simbolo (BTC/ETH/SOL a 2 decimales y ADA/XRP a 4).
 1.7 Se expuso el signal base como readonly y se hizo init() idempotente para evitar dobles suscripciones.
 1.8 Se ajusto el formato de precio en el listado para mantener 4 decimales en ADA/XRP.
+
+## Objetivo 2 – UI base y componentes
+2.1 Se creo el componente presentacional de tarjetas para criptoactivos con estilos base.
+2.2 Se refactorizo el dashboard para usar cards y mantener OnPush con @for.
+2.3 Se agrego un layout simple con header y grid responsive para el listado.
+
+2.4 Se ajusto el formato de precio y porcentaje en las tarjetas para mantener decimales y signo.
+
+
+2.5 Se corrigio la metadata de estilos en los componentes (styleUrls).

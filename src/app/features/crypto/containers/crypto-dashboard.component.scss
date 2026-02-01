@@ -1,0 +1,36 @@
+﻿:host {
+  display: block;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #f5f7ff 0%, #f8fafc 45%, #ffffff 100%);
+  color: #0f172a;
+}
+
+.dashboard {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.dashboard-header {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: #4b5563;
+  max-width: 600px;
+}
+
+.assets-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}

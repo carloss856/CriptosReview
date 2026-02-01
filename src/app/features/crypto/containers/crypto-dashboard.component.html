@@ -1,0 +1,12 @@
+﻿<section class="dashboard">
+  <header class="dashboard-header">
+    <h1>Criptos en tiempo real</h1>
+    <p>Listado base con feed simulado y actualizaciones frecuentes.</p>
+  </header>
+
+  <div class="assets-grid">
+    @for (asset of assets(); track asset.id) {
+      <app-crypto-asset-card [asset]="asset" />
+    }
+  </div>
+</section>

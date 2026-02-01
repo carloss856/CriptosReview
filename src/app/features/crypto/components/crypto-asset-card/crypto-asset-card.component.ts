@@ -1,0 +1,38 @@
+﻿import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { CryptoAsset } from '../../models/crypto-asset.model';
+
+@Component({
+  selector: 'app-crypto-asset-card',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './crypto-asset-card.component.html',
+  styleUrls: ['./crypto-asset-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class CryptoAssetCardComponent {
+  @Input({ required: true }) asset!: CryptoAsset;
+
+  get priceDigits(): string {
+    return this.asset.symbol === 'ADA' || this.asset.symbol === 'XRP' ? '1.4-4' : '1.2-2';
+  }
+
+  get changeClass(): string {
+    if (this.asset.changePercent > 0) {
+      return 'is-positive';
+    }
+
+    if (this.asset.changePercent < 0) {
+      return 'is-negative';
+    }
+
+    return '';
+  }
+
+  get changeLabel(): string {
+    const sign =
+      this.asset.changePercent > 0 ? '+' : this.asset.changePercent < 0 ? '-' : '';
+    return `${sign}${Math.abs(this.asset.changePercent).toFixed(2)}%`;
+  }
+}

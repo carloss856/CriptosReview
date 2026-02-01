@@ -1,0 +1,11 @@
+﻿<article class="asset-card">
+  <header class="asset-header">
+    <div class="symbol">{{ asset.symbol }}</div>
+    <div class="name">{{ asset.name }}</div>
+  </header>
+
+  <div class="asset-body">
+    <div class="price">{{ asset.price | number: priceDigits }}</div>
+    <div class="change" [ngClass]="changeClass">{{ changeLabel }}</div>
+  </div>
+</article>

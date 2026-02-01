@@ -1,31 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
+import { CryptoAssetCardComponent } from '../components/crypto-asset-card/crypto-asset-card.component';
 import { CryptoDashboardStore } from './crypto-dashboard.store';
 
 @Component({
   selector: 'app-crypto-dashboard',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <section>
-      <h1>Criptos en tiempo real</h1>
-      <ul>
-        @for (asset of assets(); track asset.id) {
-          <li>
-            <strong>{{ asset.symbol }}</strong>
-            <span>
-              {{
-                asset.price
-                  | number: asset.symbol === 'ADA' || asset.symbol === 'XRP' ? '1.4-4' : '1.2-2'
-              }}
-            </span>
-            <small>{{ asset.changePercent | number: '1.2-2' }}%</small>
-          </li>
-        }
-      </ul>
-    </section>
-  `,
+  imports: [CryptoAssetCardComponent],
+  templateUrl: './crypto-dashboard.component.html',
+  styleUrls: ['./crypto-dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CryptoDashboardComponent implements OnInit {
