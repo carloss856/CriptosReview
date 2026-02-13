@@ -1,7 +1,12 @@
-﻿<article class="asset-card" [class.is-alert]="isAlert">
+﻿<article [ngClass]="['asset-card', 'theme-' + asset.symbol.toLowerCase(), isAlert ? 'is-alert' : '']">
   <header class="asset-header">
-    <div class="symbol">{{ asset.symbol }}</div>
-    <div class="name">{{ asset.name }}</div>
+    <div class="asset-title">
+      <span class="asset-icon">{{ assetIcon }}</span>
+      <div class="asset-text">
+        <div class="symbol">{{ asset.symbol }}</div>
+        <div class="name">{{ asset.name }}</div>
+      </div>
+    </div>
   </header>
 
   <div class="asset-body">
@@ -42,5 +47,26 @@
     >
       Limpiar
     </button>
+  </div>
+
+  <div class="chart">
+    <div class="chart-header">
+      <span class="chart-title">Tendencia</span>
+      <div class="range-group">
+        @for (option of chartOptions; track option.key) {
+          <button
+            type="button"
+            class="range-button"
+            [class.is-active]="chartRange === option.key"
+            (click)="onRangeSelect(option.key)"
+          >
+            {{ option.label }}
+          </button>
+        }
+      </div>
+    </div>
+    <svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true">
+      <polyline [attr.points]="sparklinePoints"></polyline>
+    </svg>
   </div>
 </article>

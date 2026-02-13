@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
+
+:root {
+  color-scheme: light;
+  --app-bg: #e8f2ff;
+  --app-bg-surface: #f3f7ff;
+  --app-bg-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' fill='none'%3E%3Ccircle cx='26' cy='28' r='14' stroke='%2393c5fd' stroke-width='2'/%3E%3Ctext x='20' y='33' font-size='12' fill='%2393c5fd' font-family='Arial'%3EB%3C/text%3E%3Cpath d='M110 42c6 0 10 4 10 10s-4 10-10 10H96c-6 0-10-4-10-10s4-10 10-10h14z' stroke='%2393c5fd' stroke-width='2'/%3E%3Cpath d='M86 52h20' stroke='%2393c5fd' stroke-width='2'/%3E%3C/svg%3E");
+  --text-color: #0f172a;
+  --muted-color: #4b5563;
+  --card-bg: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.08);
+  --shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  --positive-color: #15803d;
+  --negative-color: #b91c1c;
+  --flash-up-bg: #dcfce7;
+  --flash-up-text: #166534;
+  --flash-down-bg: #fee2e2;
+  --flash-down-text: #991b1b;
+  --alert-border: #f97316;
+
+  --asset-btc-bg: #fff4e3;
+  --asset-btc-accent: #d97706;
+  --asset-btc-soft: #fde1b5;
+  --asset-eth-bg: #f2efff;
+  --asset-eth-accent: #7c3aed;
+  --asset-eth-soft: #ddd7ff;
+  --asset-sol-bg: #eefbf5;
+  --asset-sol-accent: #16a34a;
+  --asset-sol-soft: #d1fae5;
+  --asset-ada-bg: #eef4ff;
+  --asset-ada-accent: #2563eb;
+  --asset-ada-soft: #dbeafe;
+  --asset-xrp-bg: #e6f7fb;
+  --asset-xrp-accent: #0ea5e9;
+  --asset-xrp-soft: #c7f0fb;
+}
+
+body.theme-dark {
+  color-scheme: dark;
+  --app-bg: #0b1420;
+  --app-bg-surface: #101b2a;
+  --app-bg-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' fill='none'%3E%3Ccircle cx='26' cy='28' r='14' stroke='%235fa8ff' stroke-width='2'/%3E%3Ctext x='20' y='33' font-size='12' fill='%235fa8ff' font-family='Arial'%3EB%3C/text%3E%3Cpath d='M110 42c6 0 10 4 10 10s-4 10-10 10H96c-6 0-10-4-10-10s4-10 10-10h14z' stroke='%235fa8ff' stroke-width='2'/%3E%3Cpath d='M86 52h20' stroke='%235fa8ff' stroke-width='2'/%3E%3C/svg%3E");
+  --text-color: #e2e8f0;
+  --muted-color: #94a3b8;
+  --card-bg: #0f172a;
+  --card-border: rgba(148, 163, 184, 0.24);
+  --shadow: 0 16px 30px rgba(2, 6, 23, 0.55);
+  --positive-color: #4ade80;
+  --negative-color: #f87171;
+  --flash-up-bg: #113d33;
+  --flash-up-text: #7ce6b0;
+  --flash-down-bg: #3f1a1a;
+  --flash-down-text: #fca5a5;
+  --alert-border: #fb923c;
+
+  --asset-btc-bg: #2b1a05;
+  --asset-btc-accent: #f59e0b;
+  --asset-btc-soft: #3a2308;
+  --asset-eth-bg: #1f1a35;
+  --asset-eth-accent: #a78bfa;
+  --asset-eth-soft: #2c2550;
+  --asset-sol-bg: #123024;
+  --asset-sol-accent: #34d399;
+  --asset-sol-soft: #1c3c2e;
+  --asset-ada-bg: #0f2343;
+  --asset-ada-accent: #60a5fa;
+  --asset-ada-soft: #153056;
+  --asset-xrp-bg: #0c2730;
+  --asset-xrp-accent: #38bdf8;
+  --asset-xrp-soft: #123843;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  background-color: var(--app-bg);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(147, 197, 253, 0.35), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.2), transparent 40%),
+    var(--app-bg-pattern);
+  background-size: cover, cover, 180px 180px;
+  color: var(--text-color);
+}
+
+button {
+  font-family: inherit;
+}

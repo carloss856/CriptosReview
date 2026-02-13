@@ -1,12 +1,11 @@
 ﻿:host {
   display: block;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #f5f7ff 0%, #f8fafc 45%, #ffffff 100%);
-  color: #0f172a;
+  color: var(--text-color);
 }
 
 .dashboard {
-  max-width: 1040px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2.5rem 1.5rem 3rem;
   display: grid;
@@ -14,23 +13,103 @@
 }
 
 .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header-text {
   display: grid;
   gap: 0.75rem;
+  max-width: 560px;
 }
 
 .dashboard-header h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   margin: 0;
 }
 
 .dashboard-header p {
   margin: 0;
-  color: #4b5563;
-  max-width: 600px;
+  color: var(--muted-color);
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.toggle-group {
+  display: inline-flex;
+  background: var(--app-bg-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.toggle {
+  border: 0;
+  background: transparent;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  color: var(--muted-color);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.toggle.is-active {
+  background: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: var(--shadow);
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--card-border);
+  background: var(--app-bg-surface);
+  color: var(--text-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.theme-icon {
+  font-size: 1.1rem;
+  transition: color 0.2s ease, filter 0.2s ease;
+}
+
+.theme-icon.moon {
+  color: #94a3b8;
+}
+
+.theme-toggle:hover .theme-icon.moon {
+  color: #cbd5e1;
+}
+
+.theme-icon.sun {
+  color: #f59e0b;
+}
+
+.theme-toggle:hover .theme-icon.sun {
+  color: #facc15;
 }
 
 .assets-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+  .assets-grid {
+    grid-template-columns: 1fr;
+  }
 }

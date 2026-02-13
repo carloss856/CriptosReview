@@ -1,15 +1,52 @@
 ﻿<section class="dashboard">
   <header class="dashboard-header">
-    <h1>Criptos en tiempo real</h1>
-    <p>Listado base con feed simulado y actualizaciones frecuentes.</p>
+    <div class="header-text">
+      <h1>CriptosReview</h1>
+      <p>Monitoreo de criptoactivos con alertas, metricas y modos de datos.</p>
+    </div>
+    <div class="header-actions">
+      <div class="toggle-group" role="group" aria-label="Origen de datos">
+        <button
+          type="button"
+          class="toggle"
+          [class.is-active]="dataSource() === 'simulated'"
+          (click)="setDataSource('simulated')"
+        >
+          Simulados
+        </button>
+        <button
+          type="button"
+          class="toggle"
+          [class.is-active]="dataSource() === 'real'"
+          (click)="setDataSource('real')"
+        >
+          Reales
+        </button>
+      </div>
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="toggleTheme()"
+        [attr.aria-label]="theme() === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'"
+        title="Cambiar tema"
+      >
+        <span class="theme-icon" [ngClass]="theme() === 'dark' ? 'sun' : 'moon'">
+          {{ theme() === 'dark' ? '☀' : '🌙' }}
+        </span>
+      </button>
+    </div>
   </header>
 
   <div class="assets-grid">
     @for (asset of assets(); track asset.id) {
       <app-crypto-asset-card
         [asset]="asset"
+        [chartPoints]="asset.chartPoints ?? []"
+        [chartRange]="asset.chartRange ?? ''"
+        [chartOptions]="chartOptions()"
         (thresholdChange)="onThresholdChange($event)"
         (thresholdClear)="onThresholdClear($event)"
+        (chartRangeChange)="onChartRangeChange($event)"
       />
     }
   </div>

@@ -9,6 +9,11 @@ type CryptoAssetViewModel = CryptoAsset & {
   volatility?: number;
 };
 
+type ChartOption = {
+  key: string;
+  label: string;
+};
+
 @Component({
   selector: 'app-crypto-asset-card',
   standalone: true,
@@ -19,8 +24,12 @@ type CryptoAssetViewModel = CryptoAsset & {
 })
 export class CryptoAssetCardComponent {
   @Input({ required: true }) asset!: CryptoAssetViewModel;
+  @Input() chartPoints: number[] = [];
+  @Input() chartRange = '';
+  @Input() chartOptions: ChartOption[] = [];
   @Output() thresholdChange = new EventEmitter<{ assetId: string; value: number | null }>();
   @Output() thresholdClear = new EventEmitter<string>();
+  @Output() chartRangeChange = new EventEmitter<{ assetId: string; range: string }>();
   thresholdDraft: string | null = null;
 
   get priceDigits(): string {
@@ -49,6 +58,23 @@ export class CryptoAssetCardComponent {
     return this.asset.threshold !== undefined && this.asset.price >= this.asset.threshold;
   }
 
+  get assetIcon(): string {
+    switch (this.asset.symbol) {
+      case 'BTC':
+        return '₿';
+      case 'ETH':
+        return 'Ξ';
+      case 'SOL':
+        return '◎';
+      case 'ADA':
+        return '₳';
+      case 'XRP':
+        return '✕';
+      default:
+        return this.asset.symbol;
+    }
+  }
+
   get movingAverageLabel(): string {
     return this.asset.movingAverage === undefined ? '—' : this.asset.movingAverage.toFixed(2);
   }
@@ -63,6 +89,27 @@ export class CryptoAssetCardComponent {
 
   get thresholdDisplayValue(): string | number {
     return this.thresholdDraft ?? (this.asset.threshold ?? '');
+  }
+
+  get sparklinePoints(): string {
+    if (!this.chartPoints.length) {
+      return '0,16 100,16';
+    }
+
+    const min = Math.min(...this.chartPoints);
+    const max = Math.max(...this.chartPoints);
+    const range = max - min || 1;
+    const height = 32;
+    const padding = 2;
+    const usableHeight = height - padding * 2;
+
+    return this.chartPoints
+      .map((value, index) => {
+        const x = (index / Math.max(this.chartPoints.length - 1, 1)) * 100;
+        const y = height - padding - ((value - min) / range) * usableHeight;
+        return `${x.toFixed(2)},${y.toFixed(2)}`;
+      })
+      .join(' ');
   }
 
   onThresholdInput(rawValue: string): void {
@@ -90,5 +137,9 @@ export class CryptoAssetCardComponent {
   onClearThreshold(): void {
     this.thresholdDraft = null;
     this.thresholdClear.emit(this.asset.id);
+  }
+
+  onRangeSelect(range: string): void {
+    this.chartRangeChange.emit({ assetId: this.asset.id, range });
   }
 }

@@ -3,23 +3,23 @@
 }
 
 .asset-card {
-  border: 1px solid #e2e6ef;
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding-inline: 1.25rem;
   padding-block: 1.25rem;
   box-sizing: border-box;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--asset-bg, var(--card-bg));
+  color: var(--text-color);
   display: grid;
   gap: 0.75rem;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--shadow);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .asset-card.is-alert {
-  border-color: #f97316;
-  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
-  background: #fff7ed;
+  border-color: var(--alert-border);
+  box-shadow: 0 12px 22px rgba(249, 115, 22, 0.25);
 }
 
 .asset-header,
@@ -37,6 +37,29 @@
   gap: 0.25rem;
 }
 
+.asset-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.asset-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--asset-accent-soft, rgba(15, 23, 42, 0.08));
+  color: var(--asset-accent, var(--text-color));
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.asset-text {
+  display: grid;
+  gap: 0.1rem;
+}
+
 .symbol {
   font-size: 1.1rem;
   font-weight: 700;
@@ -45,7 +68,7 @@
 
 .name {
   font-size: 0.9rem;
-  color: #5b6472;
+  color: var(--muted-color);
 }
 
 .asset-body {
@@ -61,29 +84,29 @@
 }
 
 .price.flash-up {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: var(--flash-up-bg);
+  color: var(--flash-up-text);
 }
 
 .price.flash-down {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: var(--flash-down-bg);
+  color: var(--flash-down-text);
 }
 
 .change {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--muted-color);
   flex-shrink: 0;
   max-width: 100%;
 }
 
 .change.is-positive {
-  color: #15803d;
+  color: var(--positive-color);
 }
 
 .change.is-negative {
-  color: #b91c1c;
+  color: var(--negative-color);
 }
 
 .change.is-alert {
@@ -96,12 +119,12 @@
   display: grid;
   gap: 0.25rem;
   font-size: 0.85rem;
-  color: #475569;
+  color: var(--muted-color);
 }
 
 .metrics span {
   font-weight: 600;
-  color: #0f172a;
+  color: var(--text-color);
 }
 
 .threshold {
@@ -117,13 +140,13 @@
   display: grid;
   gap: 0.35rem;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--muted-color);
   flex: 1 1 auto;
   min-width: 0;
 }
 
 .threshold input {
-  border: 1px solid #d5d9e2;
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 0.35rem 0.5rem;
   font-size: 0.9rem;
@@ -134,8 +157,8 @@
 }
 
 .threshold .clear {
-  border: 1px solid #d5d9e2;
-  background: #f8fafc;
+  border: 1px solid var(--card-border);
+  background: var(--app-bg-surface);
   border-radius: 999px;
   padding: 0.35rem 0.85rem;
   font-size: 0.8rem;
@@ -147,4 +170,93 @@
 .threshold .clear:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.chart {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  background: var(--app-bg-surface);
+  border-radius: 12px;
+  padding: 0.75rem;
+  border: 1px solid var(--card-border);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chart-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted-color);
+}
+
+.range-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.range-button {
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--muted-color);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.range-button.is-active {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--asset-accent, var(--card-border));
+}
+
+.sparkline {
+  width: 100%;
+  height: 50px;
+}
+
+.sparkline polyline {
+  fill: none;
+  stroke: var(--asset-accent, var(--text-color));
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-btc {
+  --asset-bg: var(--asset-btc-bg);
+  --asset-accent: var(--asset-btc-accent);
+  --asset-accent-soft: var(--asset-btc-soft);
+}
+
+.theme-eth {
+  --asset-bg: var(--asset-eth-bg);
+  --asset-accent: var(--asset-eth-accent);
+  --asset-accent-soft: var(--asset-eth-soft);
+}
+
+.theme-sol {
+  --asset-bg: var(--asset-sol-bg);
+  --asset-accent: var(--asset-sol-accent);
+  --asset-accent-soft: var(--asset-sol-soft);
+}
+
+.theme-ada {
+  --asset-bg: var(--asset-ada-bg);
+  --asset-accent: var(--asset-ada-accent);
+  --asset-accent-soft: var(--asset-ada-soft);
+}
+
+.theme-xrp {
+  --asset-bg: var(--asset-xrp-bg);
+  --asset-accent: var(--asset-xrp-accent);
+  --asset-accent-soft: var(--asset-xrp-soft);
 }
